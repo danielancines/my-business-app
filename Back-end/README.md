@@ -6,14 +6,14 @@ export **<BUSINESSAPP_PRIVATE_KEY>** - secret key for Json Web Token;
 
 export **<NODE_ENV>** - production or development - It makes difference at log level;
 
-# Installing packages:
+# Installing and running:
 
 Install node packages
 ```bash
 $ npm install
 ```
 
-Start the application. You need to set environment variables first, otherwise the api won't run.
+Start the application. You need to set the environment variables first, otherwise the api won't run.
 ```bash
 $ npm start
 ```
