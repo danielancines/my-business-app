@@ -1,10 +1,17 @@
 const express = require('express');
 const router = express.Router();
 const orders = require('./orders');
+const users = require('./users');
+const auth = require('./auth');
 
-router.get('/', (req,res)=> {
-    res.send('v.0.0.2');
+router.get('/', (req, res) => {
+    res.send({
+        message: 'Welcome to BusinessApp Api',
+        version: 'v.0.0.3'
+    });
 });
 router.use('/orders', orders);
+router.use('/users', users);
+router.use('/auth', auth);
 
 module.exports = router;

@@ -1,4 +1,4 @@
 {
-    "password": "TERM_PROGRAM",
+    "privateKey": "BUSINESSAPP_PRIVATE_KEY",
     "connectionString": "CONNECTION_STRING"
 }

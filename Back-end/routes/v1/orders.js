@@ -1,8 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const { Order, validate } = require('../../data/orderSchema');
+const { Order, validate } = require('../../data/model/order');
+const auth = require('./../../middleware/auth');
+const admin = require('./../../middleware/admin');
 
-router.delete('/:id', async (req, res) => {
+router.use(auth);
+router.delete('/:id', [admin], async (req, res) => {
     try {
         const order = await Order.findByIdAndRemove(req.params.id);
         if (order) return res.send(order);
