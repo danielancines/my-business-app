@@ -13,7 +13,8 @@ module.exports = function (req, res, next) {
         next();
     } catch (error) {
         res.status(400).send({
-            message: 'Access denied. Invalid token.'
+            message: 'Access denied. Invalid token.',
+            error: error.message
         });
     }
 };
