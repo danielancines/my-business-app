@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import * as jwt_decode from 'jwt-decode';
 import { Router } from '@angular/router';
+import { environment } from 'environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,7 @@ export class AuthenticationService {
   }
 
   login(email: String, password: String): Observable<IUser> {
-    return this._httpClient.post<any>('https://businessapi.now.sh/api/v1/auth', { email: email, password: password })
+    return this._httpClient.post<any>(`${environment.baseApiUrl}/auth`, { email: email, password: password })
       .pipe(map((response) => {
         const user: IUser = {
           _id: response.user._id,

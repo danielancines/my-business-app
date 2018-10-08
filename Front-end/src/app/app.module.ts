@@ -18,10 +18,11 @@ import { AppComponent } from 'app/app.component';
 import { LayoutModule } from 'app/layout/layout.module';
 import { LoginModule } from './auth/login/login.module';
 import { HomeModule } from './home/home.module';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 const appRoutes: Routes = [
     {
-        path      : '**',
+        path: '**',
         redirectTo: 'auth/login'
     }
 ];
@@ -30,7 +31,7 @@ const appRoutes: Routes = [
     declarations: [
         AppComponent
     ],
-    imports     : [
+    imports: [
         BrowserModule,
         BrowserAnimationsModule,
         HttpClientModule,
@@ -44,6 +45,7 @@ const appRoutes: Routes = [
         // Material
         MatButtonModule,
         MatIconModule,
+        MatProgressSpinnerModule,
 
         // Fuse modules
         FuseModule.forRoot(fuseConfig),
@@ -56,10 +58,9 @@ const appRoutes: Routes = [
         HomeModule,
         LoginModule
     ],
-    bootstrap   : [
+    bootstrap: [
         AppComponent
     ]
 })
-export class AppModule
-{
+export class AppModule {
 }
