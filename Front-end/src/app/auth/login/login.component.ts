@@ -3,8 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { FuseConfigService } from '@fuse/services/config.service';
 import { fuseAnimations } from '@fuse/animations';
-import { LoginService } from './login.service';
 import { Router } from '@angular/router';
+import { AuthenticationService } from '../authentication.service';
 
 @Component({
     selector   : 'app-login',
@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit
     constructor(
         private _fuseConfigService: FuseConfigService,
         private _formBuilder: FormBuilder,
-        private _loginService: LoginService,
+        private _authenticationService: AuthenticationService,
         private _router: Router
     )
     {
@@ -55,16 +55,15 @@ export class LoginComponent implements OnInit
     ngOnInit(): void
     {
         this.loginForm = this._formBuilder.group({
-            email   : ['daniel.ancines@gmail.com', [Validators.required, Validators.email]],
-            password: ['1234', Validators.required]
+            email   : ['', [Validators.required, Validators.email]],
+            password: ['', Validators.required]
         });
     }
 
     executeLogin(): void {
-      this._loginService.login(this.loginForm.get('email').value, this.loginForm.get('password').value)
+      this._authenticationService.login(this.loginForm.get('email').value, this.loginForm.get('password').value)
       .subscribe(user => {
-        alert(JSON.stringify(user));
-        this._router.navigate(['sample']);
+        this._router.navigate(['home']);
       },
       (error) => {
         alert(JSON.stringify(error));

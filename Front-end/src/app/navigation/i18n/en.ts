@@ -3,8 +3,8 @@ export const locale = {
     data: {
         'NAV': {
             'APPLICATIONS': 'Applications',
-            'SAMPLE'        : {
-                'TITLE': 'Sample',
+            'HOME'        : {
+                'TITLE': 'Home',
                 'BADGE': '25'
             }
         }

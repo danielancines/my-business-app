@@ -9,6 +9,9 @@ import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
 
 import { navigation } from 'app/navigation/navigation';
 import { FuseLoadingBarService } from '@fuse/services/loading-bar.service';
+import { AuthenticationService } from '../../../auth/authentication.service';
+import { IUser } from '../../../auth/model/IUser';
+import { Md5 } from 'ts-md5';
 
 @Component({
     selector   : 'toolbar',
@@ -26,6 +29,8 @@ export class ToolbarComponent implements OnInit, OnDestroy
     selectedLanguage: any;
     showLoadingBar: boolean;
     userStatusOptions: any[];
+    user: IUser;
+    userAvatar: string;
 
     // Private
     private _unsubscribeAll: Subject<any>;
@@ -42,7 +47,8 @@ export class ToolbarComponent implements OnInit, OnDestroy
         private _fuseConfigService: FuseConfigService,
         private _fuseLoadingBarService: FuseLoadingBarService,
         private _fuseSidebarService: FuseSidebarService,
-        private _translateService: TranslateService
+        private _translateService: TranslateService,
+        private _authenticationService: AuthenticationService
     )
     {
         // Set the defaults
@@ -120,6 +126,12 @@ export class ToolbarComponent implements OnInit, OnDestroy
 
         // Set the selected language from default languages
         this.selectedLanguage = _.find(this.languages, {'id': this._translateService.currentLang});
+
+        this.user = this._authenticationService.user;
+        if (this.user) {
+            const hash = Md5.hashStr(this.user.email.toString());
+            this.userAvatar = `https://www.gravatar.com/avatar/${hash}`;
+        }
     }
 
     /**
@@ -169,5 +181,9 @@ export class ToolbarComponent implements OnInit, OnDestroy
 
         // Use the selected language for translations
         this._translateService.use(lang.id);
+    }
+
+    logout(){
+        this._authenticationService.logout();
     }
 }
