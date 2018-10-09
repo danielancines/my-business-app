@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
@@ -19,6 +19,7 @@ import { LayoutModule } from 'app/layout/layout.module';
 import { SampleModule } from 'app/main/sample/sample.module';
 import { LoginModule } from './auth/login/login.module';
 import { HomeModule } from './home/home.module';
+import { SecurityInterceptor } from './interceptors/security.interceptor';
 
 const appRoutes: Routes = [
     {
@@ -57,6 +58,13 @@ const appRoutes: Routes = [
         LayoutModule,
         HomeModule,
         LoginModule
+    ],
+    providers: [
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: SecurityInterceptor,
+            multi: true
+        }
     ],
     bootstrap   : [
         AppComponent

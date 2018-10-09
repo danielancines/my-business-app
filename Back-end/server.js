@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
+const corsConfig = require('./config/cors');
 const helmet = require('helmet');
 const log = require('./log/logger');
 const apiV1Routes = require('./routes/v1/routes');
@@ -22,7 +23,7 @@ if (!config.get('connectionString')){
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(helmet());
-app.use(cors());
+app.use(cors(corsConfig));
 app.use('/api/v1', apiV1Routes);
 
 app.listen(port, () => {

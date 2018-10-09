@@ -24,11 +24,27 @@ export class AuthenticationService {
         const user: IUser = {
           _id: response.user._id,
           name: response.user.name,
+          lastName: response.user.lastName,
           email: response.user.email,
           token: response.token
         };
 
         localStorage.setItem('user', JSON.stringify(user));
+        return user;
+      }));
+  }
+
+  me(): Observable<IUser> {
+    return this._httpClient.get<any>(`${environment.baseApiUrl}/auth/me/${this.user._id}`)
+      .pipe(map((response) => {
+        const user: IUser = {
+          _id: response.user._id,
+          name: response.user.name,
+          lastName: response.user.lastName,
+          email: response.user.email,
+          token: response.token
+        };
+        
         return user;
       }));
   }

@@ -23,11 +23,25 @@ router.post('/', async (req, res) => {
         });
 
         res.send({
-            user: _.pick(savedUser, ['_id', 'name', 'email']),
+            user: _.pick(savedUser, ['_id', 'name', 'lastName', 'email']),
             token: savedUser.generateAuthToken()
         });
     } catch (error) {
         res.status(400).send({
+            message: error.message
+        });
+    }
+});
+
+router.get('/me/:id', async (req,res) => {
+    try {
+        const user = await User.findById(req.params.id);
+        if (user) return res.send(_.pick(user, ['name', 'lastName', 'email']));
+        else return res.status(400).send({
+            message: 'User not found!'
+        });
+    } catch (error) {
+        return res.status(400).send({
             message: error.message
         });
     }

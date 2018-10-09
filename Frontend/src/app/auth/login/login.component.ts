@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit
     {
         // Configure the layout
         this._fuseConfigService.config = {
-            colorTheme      : 'theme-blue-gray-dark',
+            
             layout: {
                 navbar   : {
                     hidden: true
