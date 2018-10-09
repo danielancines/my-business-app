@@ -24,7 +24,7 @@ import { SecurityInterceptor } from './interceptors/security.interceptor';
 const appRoutes: Routes = [
     {
         path      : '**',
-        redirectTo: 'sample'
+        redirectTo: 'home'
     }
 ];
 
