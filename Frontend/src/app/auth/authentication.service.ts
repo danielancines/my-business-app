@@ -55,7 +55,6 @@ export class AuthenticationService {
   }
 
   isAuthenticated(): boolean {
-    debugger
     if (!this.user || !this.user.token) {
       this.logout();
       return false;

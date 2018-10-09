@@ -16,7 +16,6 @@ import { fuseConfig } from 'app/fuse-config';
 
 import { AppComponent } from 'app/app.component';
 import { LayoutModule } from 'app/layout/layout.module';
-import { SampleModule } from 'app/main/sample/sample.module';
 import { LoginModule } from './auth/login/login.module';
 import { HomeModule } from './home/home.module';
 import { SecurityInterceptor } from './interceptors/security.interceptor';
