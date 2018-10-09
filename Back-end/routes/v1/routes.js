@@ -7,7 +7,7 @@ const auth = require('./auth');
 router.get('/', (req, res) => {
     res.send({
         message: 'Welcome to BusinessApp Api',
-        version: 'v.0.0.5'
+        version: 'v.0.0.6'
     });
 });
 router.use('/orders', orders);

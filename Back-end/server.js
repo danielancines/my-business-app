@@ -9,6 +9,7 @@ const dbConnection = require('./data/connection');
 const port = process.env.PORT || 3000;
 require('./middleware/morgan')(app);
 const config = require('config');
+const compression = require('compression');
 
 if (!config.get('privateKey')){
     log('error', 'FATAL ERROR: BUSINESSAPP_PRIVATE_KEY is not defined!');
@@ -20,6 +21,7 @@ if (!config.get('connectionString')){
     process.exit(1);
 }
 
+app.use(compression());
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(helmet());

@@ -1,4 +1,5 @@
 {
     "privateKey": "BUSINESSAPP_PRIVATE_KEY",
-    "connectionString": "CONNECTION_STRING"
+    "connectionString": "CONNECTION_STRING",
+    "originUrl": "ORIGIN_URL"
 }
